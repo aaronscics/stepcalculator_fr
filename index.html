@@ -43,29 +43,29 @@
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
     <div class="container mx-auto px-4 py-12">
         <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">StepGenie</h1>
-            <p class="text-xl text-gray-600">Convert your activities into magical steps! ✨</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Pas de Génie</h1>
+            <p class="text-xl text-gray-600">Transformez vos activités en pas magiques ! ✨</p>
             <div class="w-24 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
         </header>
 
         <main class="max-w-3xl mx-auto">
             <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Activity Converter</h2>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Convertisseur d'activité</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <!-- Activity Selection -->
                     <div>
-                        <label class="block text-gray-700 mb-2 font-medium">Choose Activity</label>
+                        <label class="block text-gray-700 mb-2 font-medium">Convertisseur d'activité</label>
                         <div class="grid grid-cols-2 gap-3">
                            
 							<button id="cycling" class="activity-btn bg-purple-100 text-purple-800 border border-purple-200 rounded-lg p-4 flex flex-col items-center card-hover">
                                 <i data-feather="aperture" class="w-6 h-6 mb-2"></i>
-                                <span>Cycling</span>
+                                <span>Vélo</span>
 							</button>
 
                             <button id="swimming" class="activity-btn bg-blue-100 text-blue-800 border border-blue-200 rounded-lg p-4 flex flex-col items-center card-hover">
                                 <i data-feather="droplet" class="w-6 h-6 mb-2"></i>
-                                <span>Swimming</span>
+                                <span>Natation</span>
                             </button>
                             <button id="yoga" class="activity-btn bg-green-100 text-green-800 border border-green-200 rounded-lg p-4 flex flex-col items-center card-hover">
                                 <i data-feather="activity" class="w-6 h-6 mb-2"></i>
@@ -73,25 +73,25 @@
                             </button>
                             <button id="strength" class="activity-btn bg-red-100 text-red-800 border border-red-200 rounded-lg p-4 flex flex-col items-center card-hover">
                                 <i data-feather="database" class="w-6 h-6 mb-2"></i>
-                                <span>Strength Training</span>
+                                <span>Entraînement en force</span>
                             </button>
                             <button id="dance" class="activity-btn bg-pink-100 text-pink-800 border border-pink-200 rounded-lg p-4 flex flex-col items-center card-hover">
                                 <i data-feather="music" class="w-6 h-6 mb-2"></i>
-                                <span>Dance/Zumba</span>
+                                <span>Danse/Zumba</span>
                             </button>
                         </div>
                     </div>
                     
                     <!-- Duration Input -->
                     <div>
-                        <label for="duration" class="block text-gray-700 mb-2 font-medium">Duration (minutes)</label>
+                        <label for="duration" class="block text-gray-700 mb-2 font-medium">Durée (minutes)</label>
                         <div class="relative">
                             <input type="number" id="duration" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter duration" min="1" value="10">
                             <div class="absolute right-3 top-3 text-gray-400">min</div>
                         </div>
                         <div class="mt-4">
                             <button id="calculate" class="w-full bg-primary hover:bg-primary-600 text-white font-bold py-3 px-4 rounded-lg transition duration-200 transform hover:scale-105">
-                                Calculate Steps <i data-feather="chevron-right" class="inline ml-1"></i>
+                                Calculez les pas <i data-feather="chevron-right" class="inline ml-1"></i>
                             </button>
                         </div>
                     </div>
@@ -100,9 +100,9 @@
                 <!-- Results -->
                 <div id="results" class="hidden bg-gradient-to-r from-primary to-secondary rounded-xl p-6 text-white text-center glow">
                     <i data-feather="award" class="w-10 h-10 mx-auto mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Your Step Conversion</h3>
-                    <p id="activityResult" class="text-lg mb-1">Activity: <span class="font-semibold">Cycling</span></p>
-                    <p id="durationResult" class="text-lg mb-1">Duration: <span class="font-semibold">10 minutes</span></p>
+                    <h3 class="text-xl font-bold mb-2">Votre conversion de pas</h3>
+                    <p id="activityResult" class="text-lg mb-1">Activité: <span class="font-semibold">Vélo</span></p>
+                    <p id="durationResult" class="text-lg mb-1">Durée: <span class="font-semibold">10 minutes</span></p>
                     <div class="text-3xl font-bold mt-4">
                         <span id="stepsResult" class="text-4xl">15,000</span> steps
                     </div>
