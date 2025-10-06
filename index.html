@@ -202,8 +202,8 @@
             const steps = Math.round((rate * duration) / 10);
             
             // Display results
-            document.getElementById('activityResult').innerHTML = `Activity: <span class="font-semibold">${document.getElementById(selectedActivity).textContent.trim()}</span>`;
-            document.getElementById('durationResult').innerHTML = `Duration: <span class="font-semibold">${duration} minutes</span>`;
+            document.getElementById('activityResult').innerHTML = `Activité: <span class="font-semibold">${document.getElementById(selectedActivity).textContent.trim()}</span>`;
+            document.getElementById('durationResult').innerHTML = `Durée: <span class="font-semibold">${duration} minutes</span>`;
             document.getElementById('stepsResult').textContent = steps.toLocaleString();
             
             // Show results
