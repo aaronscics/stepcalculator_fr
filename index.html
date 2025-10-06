@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StepGenie: Activity to Steps Converter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8b5cf6',
+                        secondary: '#ec4899',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .glow {
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px -5px #ec4899;
+            }
+            to {
+                box-shadow: 0 0 20px -5px #ec4899;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-12">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">StepGenie</h1>
+            <p class="text-xl text-gray-600">Convert your activities into magical steps! ✨</p>
+            <div class="w-24 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
+        </header>
+
+        <main class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Activity Converter</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <!-- Activity Selection -->
+                    <div>
+                        <label class="block text-gray-700 mb-2 font-medium">Choose Activity</label>
+                        <div class="grid grid-cols-2 gap-3">
+                           
+							<button id="cycling" class="activity-btn bg-purple-100 text-purple-800 border border-purple-200 rounded-lg p-4 flex flex-col items-center card-hover">
+                                <i data-feather="aperture" class="w-6 h-6 mb-2"></i>
+                                <span>Cycling</span>
+							</button>
+
+                            <button id="swimming" class="activity-btn bg-blue-100 text-blue-800 border border-blue-200 rounded-lg p-4 flex flex-col items-center card-hover">
+                                <i data-feather="droplet" class="w-6 h-6 mb-2"></i>
+                                <span>Swimming</span>
+                            </button>
+                            <button id="yoga" class="activity-btn bg-green-100 text-green-800 border border-green-200 rounded-lg p-4 flex flex-col items-center card-hover">
+                                <i data-feather="activity" class="w-6 h-6 mb-2"></i>
+                                <span>Yoga/Pilates</span>
+                            </button>
+                            <button id="strength" class="activity-btn bg-red-100 text-red-800 border border-red-200 rounded-lg p-4 flex flex-col items-center card-hover">
+                                <i data-feather="database" class="w-6 h-6 mb-2"></i>
+                                <span>Strength Training</span>
+                            </button>
+                            <button id="dance" class="activity-btn bg-pink-100 text-pink-800 border border-pink-200 rounded-lg p-4 flex flex-col items-center card-hover">
+                                <i data-feather="music" class="w-6 h-6 mb-2"></i>
+                                <span>Dance/Zumba</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Duration Input -->
+                    <div>
+                        <label for="duration" class="block text-gray-700 mb-2 font-medium">Duration (minutes)</label>
+                        <div class="relative">
+                            <input type="number" id="duration" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter duration" min="1" value="10">
+                            <div class="absolute right-3 top-3 text-gray-400">min</div>
+                        </div>
+                        <div class="mt-4">
+                            <button id="calculate" class="w-full bg-primary hover:bg-primary-600 text-white font-bold py-3 px-4 rounded-lg transition duration-200 transform hover:scale-105">
+                                Calculate Steps <i data-feather="chevron-right" class="inline ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Results -->
+                <div id="results" class="hidden bg-gradient-to-r from-primary to-secondary rounded-xl p-6 text-white text-center glow">
+                    <i data-feather="award" class="w-10 h-10 mx-auto mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Your Step Conversion</h3>
+                    <p id="activityResult" class="text-lg mb-1">Activity: <span class="font-semibold">Cycling</span></p>
+                    <p id="durationResult" class="text-lg mb-1">Duration: <span class="font-semibold">10 minutes</span></p>
+                    <div class="text-3xl font-bold mt-4">
+                        <span id="stepsResult" class="text-4xl">15,000</span> steps
+                    </div>
+                    <button id="reset" class="mt-6 bg-white text-primary font-semibold py-2 px-6 rounded-full hover:bg-gray-100 transition">
+                        Reset <i data-feather="refresh-ccw" class="inline ml-1"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Conversion Guide -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Conversion Rates</h2>
+                <p class="text-gray-600 mb-4">These are the step equivalents for 10 minutes of each activity:</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="px-4 py-3 text-left text-gray-600 font-medium">Activity</th>
+                                <th class="px-4 py-3 text-left text-gray-600 font-medium">Steps per 10min</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-3">Cycling</td>
+                                <td class="px-4 py-3 font-medium">1,500 steps</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">Swimming</td>
+                                <td class="px-4 py-3 font-medium">2,000 steps</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">Yoga/Pilates</td>
+                                <td class="px-4 py-3 font-medium">500 steps</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">Strength Training</td>
+                                <td class="px-4 py-3 font-medium">1,000 steps</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">Dance/Zumba</td>
+                                <td class="px-4 py-3 font-medium">1,500 steps</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="mt-16 text-center text-gray-500 text-sm">
+            <p>Made with <i data-feather="heart" class="inline w-4 h-4 text-secondary"></i> for your office steps challenge</p>
+        </footer>
+    </div>
+
+    <script>
+        feather.replace();
+        
+        // Conversion rates (steps per 10 minutes)
+        const conversionRates = {
+            cycling: 1500,
+            swimming: 2000,
+            yoga: 500,
+            strength: 1000,
+            dance: 1500
+        };
+        
+        let selectedActivity = 'cycling';
+        
+        // Set up activity buttons
+        document.querySelectorAll('.activity-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.activity-btn').forEach(b => {
+                    b.classList.remove('border-primary', 'bg-primary', 'text-white');
+                    b.classList.add('border-gray-200', 'bg-gray-100', 'text-gray-800');
+                });
+                
+                // Add active class to clicked button
+                this.classList.remove('border-gray-200', 'bg-gray-100', 'text-gray-800');
+                this.classList.add('border-primary', 'bg-primary', 'text-white');
+                
+                // Update selected activity
+                selectedActivity = this.id;
+            });
+        });
+        
+        // Calculate button
+        document.getElementById('calculate').addEventListener('click', function() {
+            const duration = parseInt(document.getElementById('duration').value) || 0;
+            
+            if (duration <= 0) {
+                alert('Please enter a valid duration');
+                return;
+            }
+            
+            // Calculate steps
+            const rate = conversionRates[selectedActivity];
+            const steps = Math.round((rate * duration) / 10);
+            
+            // Display results
+            document.getElementById('activityResult').innerHTML = `Activity: <span class="font-semibold">${document.getElementById(selectedActivity).textContent.trim()}</span>`;
+            document.getElementById('durationResult').innerHTML = `Duration: <span class="font-semibold">${duration} minutes</span>`;
+            document.getElementById('stepsResult').textContent = steps.toLocaleString();
+            
+            // Show results
+            document.getElementById('results').classList.remove('hidden');
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Reset button
+        document.getElementById('reset').addEventListener('click', function() {
+            document.getElementById('results').classList.add('hidden');
+            document.getElementById('duration').value = '10';
+        });
+        
+        // Set cycling as default selected
+        document.getElementById('cycling').click();
+    </script>
+</body>
+</html>
